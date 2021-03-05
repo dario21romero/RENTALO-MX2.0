@@ -8,7 +8,7 @@ Resource    ../Resources/search_resources.robot
 Resource  ../Resources/Common.robot  # necessary for Setup & Teardown
 Resource  ../Resources/RentaloApp.robot  # necessary for lower level keywords in test cases
 Resource  ../Resources/PO/LandingPage.robot
-Test Setup  Begin Web Test
+Test Setup  Begin Web Test 2
 Test Teardown  End Web Test
 
 Test Template   Busqueda
