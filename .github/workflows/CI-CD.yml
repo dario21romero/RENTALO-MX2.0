@@ -1,0 +1,57 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python application
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install robotframework
+        pip install robotframework-seleniumlibrary
+        pip install robotframework-datadriver
+        # pip install -U robotframework-datadriver[XLS]
+        pip install --upgrade robotframework-datadriver[XLS]
+        pip install xlrd
+        pip install openpyxl
+        # pip3 install robotframework-datadriver[XLS]
+        # pip install robotframework-exceldatadriver
+        # pip3 install robotframework-appiumlibrary
+       
+    - name: Test with robotframework
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        #flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        # flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Verify data
+      run: |
+        # cd Tests
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+        sudo dpkg -i google-chrome*.deb 
+        rm google-chrome*.deb
+        wget http://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip
+        sudo unzip chromedriver_linux64.zip
+        # chmod +x chromedriver
+        # RUN cp /chromedriver /usr/local/bin
+        rm chromedriver_linux64.zip
+        ls
+    - name: Test with robot
+      run: |
+        robot -T -d reports Tests/FlujoBasico.robot
