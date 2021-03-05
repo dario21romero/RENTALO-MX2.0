@@ -1,0 +1,12 @@
+PyYAML==5.1
+requests==2.21.0
+robotframework==3.1.1
+#robotframework-excellibrary==0.0.2
+robotframework-httplibrary==0.4.2
+robotframework-requests==0.5.0
+robotframework-selenium2library==3.0.0
+robotframework-seleniumlibrary==3.3.1
+robotframework-sshlibrary==3.3.0
+robotframework-datadriver==1.0.0
+robotframework-datadriver[XLS]
+robotframework-exceldatadriver==1.2.2

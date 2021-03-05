@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+    test:
+        network_mode: host
+        image: robotframework/rfdocker:latest
+        shm_size: "256M"
+        environment:
+            USERNAME: a8990
+        volumes: [
+           "$PWD/Results:/results",
+           "$PWD/tests:/tests",
+           "$PWD/reports:/reports"
+        ] 
